@@ -28,10 +28,8 @@ pipeline {
         stage('GetCode') {
             steps {
                 checkout([$class: 'GitSCM', branches: [[name: "${GIT_BRANCH}"]],
-                    doGenerateSubmoduleConfigurations: false,
                     extensions: [],
-                    submoduleCfg: [],
-                    userRemoteConfigs: [[credentialsId: 'github_username_pass', url: "https://${GIT_URL}"]]])
+                    userRemoteConfigs: [[url: "https://${GIT_URL}"]]])
 
                 script{
                     env.IMAGE_TAG = semVer.getNextMinorVersion()
