@@ -52,7 +52,7 @@ pipeline {
             steps {
                 script{
                     sh """
-                        git remote set-url origin https://${GITLAB_CREDS_USR}:${GITLAB_CREDS_PSW}@${GIT_URL}
+                        git remote set-url origin https://${GITHUB_CREDS_USR}:${GITHUB_CREDS_PSW}@${GIT_URL}
                         git config --global user.email "yongjindai09@gmail.com"
                         git config --global user.name "Frank Dai"
                         git status
