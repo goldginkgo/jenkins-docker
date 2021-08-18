@@ -17,9 +17,11 @@ pipeline {
 
     environment {
         GIT_BRANCH = "master"
-        GIT_URL = "https://github.com/goldginkgo/jenkins-docker.git"
+        GIT_URL = "github.com/goldginkgo/jenkins-docker.git"
         IMAGE = "goldginkgo/jenkins"
         TO_EMAIL_USER = "yongjindai09@gmail.com"
+
+        GITHUB_CREDS = credentials('github_username_pass')
     }
 
     stages {
@@ -29,7 +31,7 @@ pipeline {
                     doGenerateSubmoduleConfigurations: false,
                     extensions: [],
                     submoduleCfg: [],
-                    userRemoteConfigs: [[credentialsId: 'gitlab_username_pass', url: "${GIT_URL}"]]])
+                    userRemoteConfigs: [[credentialsId: 'github_username_pass', url: "https://${GIT_URL}"]]])
 
                 script{
                     env.IMAGE_TAG = semVer.getNextMinorVersion()
@@ -52,7 +54,7 @@ pipeline {
             steps {
                 script{
                     sh """
-                        git remote set-url origin ${GIT_URL}
+                        git remote set-url origin https://${GITLAB_CREDS_USR}:${GITLAB_CREDS_PSW}@${GIT_URL}
                         git config --global user.email "yongjindai09@gmail.com"
                         git config --global user.name "Frank Dai"
                         git status
