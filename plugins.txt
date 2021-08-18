@@ -3,7 +3,7 @@ ansicolor:1.0.0
 ansible:1.1
 authorize-project:1.4.0
 blueocean:1.24.8
-configuration-as-code:1.51
+configuration-as-code:1.52
 dashboard-view:2.17
 disk-usage:0.28
 emailext-template:1.2
